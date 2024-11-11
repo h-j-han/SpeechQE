@@ -66,7 +66,6 @@ $ ./scripts/score_spechqe.sh
 ## SpeechQE Correlation with Human Direct Assessment Score
 We compare the output quality scores from SpeechQE systems with human direct assessment (DA) scores from the IWSLT-ACL test set from [IWSLT/da2023](https://huggingface.co/datasets/IWSLT/da2023).
 
-
 ```bash
 $ python speechqe/score_speechqe.py \
     --dataroot=data/acl \
@@ -74,9 +73,6 @@ $ python speechqe/score_speechqe.py \
     --speechqe_model=h-j-han/SpeechQE-TowerInstruct-7B-en2de
 ```
 
-
-For cascaded, we use the ASR output provided by [Salesky et al.(2023)](https://aclanthology.org/2023.iwslt-1.2/).
-We tried Whisper ASR systems, but the output quality was not acceptable, likely due to the IWSLT23-ACL set being out-of-domain and covering highly technical NLP topics. The ASR provided is Azure API speech-to-text service, which we believe performs comparably to SOTA ASR models.
 The result of cascaded system on IWSLT-ACL test set and related data can be found in `data/acl`.
 
 
