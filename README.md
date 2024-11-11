@@ -8,13 +8,10 @@ The provided models corresponds to "TowerInstruct-LoRA+Adapter-pt-Fixed" in the 
 |English-to-German Speech Translation |[h-j-han/SpeechQE-TowerInstruct-7B-en2de](https://huggingface.co/h-j-han/SpeechQE-TowerInstruct-7B-en2de)| CoVoST2|
 |Spanish-to-English Speech Translation  |[h-j-han/SpeechQE-TowerInstruct-7B-es2en](https://huggingface.co/h-j-han/SpeechQE-TowerInstruct-7B-es2en)|CoVoST2|
 
-## Benchmarks
-<iframe
-  src="https://huggingface.co/datasets/h-j-han/SpeechQE-CoVoST2/embed/viewer/en2de/test"
-  frameborder="0"
-  width="100%"
-  height="560px"
-></iframe>
+## Benchmarks and Training Corpus for SpeechQE
+In [SpeechQE-CoVoST2](https://huggingface.co/datasets/h-j-han/SpeechQE-CoVoST2), 
+we subsample about 80k segments from the training set and 500 from the dev and test of [facebook/covost2](https://huggingface.co/datasets/facebook/covost2), then run seven different direct ST models to generate the ST hypotheses. So, the `test` split consists of 3500 instances(500*7). We also provide splits for each translation model.
+
 
 ## Environment Setup
 ```bash
