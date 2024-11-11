@@ -1,4 +1,4 @@
-# [SpeechQE: Estimating the Quality of Direct Speech Translation](https://aclanthology.org/2024.emnlp-main.1218) at EMNLP2024  
+# [SpeechQE: Estimating the Quality of Direct Speech Translation](https://aclanthology.org/2024.emnlp-main.1218) 
 We formulate the task of quality estimation for speech translation (SpeechQE), construct a benchmark, and evaluate a family of systems based on cascaded and end-to-end architectures.
 
 We provide our E2E model on Huggingface Hub.
