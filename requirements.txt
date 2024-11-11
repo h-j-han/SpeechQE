@@ -1,0 +1,11 @@
+transformers==4.39.0
+datasets==3.1.0
+tokenizers==0.15.2
+langcodes
+pyarrow_hotfix
+accelerate
+soundfile
+sentencepiece==0.1.99
+protobuf==4.25.3
+numpy==1.26.4
+scipy
