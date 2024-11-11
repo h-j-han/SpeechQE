@@ -84,9 +84,6 @@ Please find details in the [ACL](https://aclanthology.org/2024.emnlp-main.1218) 
     author = "Han, HyoJung  and
       Duh, Kevin  and
       Carpuat, Marine",
-    editor = "Al-Onaizan, Yaser  and
-      Bansal, Mohit  and
-      Chen, Yun-Nung",
     booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
     month = nov,
     year = "2024",
@@ -94,6 +91,5 @@ Please find details in the [ACL](https://aclanthology.org/2024.emnlp-main.1218) 
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2024.emnlp-main.1218",
     pages = "21852--21867",
-    abstract = "Recent advances in automatic quality estimation for machine translation have exclusively focused on written language, leaving the speech modality underexplored. In this work, we formulate the task of quality estimation for speech translation (SpeechQE), construct a benchmark, and evaluate a family of systems based on cascaded and end-to-end architectures. In this process, we introduce a novel end-to-end system leveraging pre-trained text LLM. Results suggest that end-to-end approaches are better suited to estimating the quality of direct speech translation than using quality estimation systems designed for text in cascaded systems. More broadly, we argue that quality estimation of speech translation needs to be studied as a separate problem from that of text, and release our [data and models](https://github.com/h-j-han/SpeechQE) to guide further research in this space.",
 }
 ```
