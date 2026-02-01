@@ -109,6 +109,7 @@ def main():
       indicate_audio_in_lid=data_args.indicate_audio_in_lid,
       base_audio_path=data_args.base_audio_path,
       training=False,
+      max_suffix_len=data_args.max_suffix_len,
   )
   print(f'{len(raw_data)=}')
   assert len(raw_data), "No data found in the test set"
@@ -168,6 +169,8 @@ def main():
     output_file = f'speechqe.{data_args.test_split_name}-{data_args.dataset_config_name}.tsv'
   output_path = os.path.join(output_repo, output_file)
   print(f"saved to {output_path}")
+  # pred_string column process split() and save the first
+  df['pred_strings'] = df['pred_strings'].apply(lambda x: x.split()[0])
   df['pred_strings'].to_csv(output_path, sep="\t", index=False)
   # make df['pred_strings'] float
   num_out_of_format = 0

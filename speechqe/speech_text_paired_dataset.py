@@ -50,6 +50,7 @@ def process_dataset(
     indicate_audio_in_lid=True,
     label_all_input_ids=False,
     output_lang="en",
+    max_suffix_len=None,
 ):
   if predifined_inst:
     instruction = batch["inst"]
@@ -91,13 +92,17 @@ def process_dataset(
 
   suffix_input_ids, suffix_attention_mask, suffix_labels = [], [], []
   if "suffix" in batch and batch["suffix"] is not None:
-    new_input_ids = tokenizer(batch["suffix"]).input_ids[1:]
-    suffix_input_ids += new_input_ids
-    suffix_attention_mask += [1] * len(new_input_ids)
+    suffix_ids = tokenizer(batch["suffix"]).input_ids[1:]
+    if max_suffix_len is not None and max_suffix_len > 0 and len(
+        suffix_ids) > max_suffix_len:
+      # print(f"Truncate suffix from {len(suffix_ids)} to {max_suffix_len}")
+      suffix_ids = suffix_ids[:max_suffix_len]
+    suffix_input_ids += suffix_ids
+    suffix_attention_mask += [1] * len(suffix_ids)
     if label_all_input_ids:
-      suffix_labels += new_input_ids
+      suffix_labels += suffix_ids
     else:
-      suffix_labels += [-100] * len(new_input_ids)
+      suffix_labels += [-100] * len(suffix_ids)
   if chatml_prompt_template:
     assitant_prefix = "<|im_end|>\n<|im_start|>assistant\n"
   else:
@@ -156,6 +161,7 @@ def load_speech_text_paired_dataset(
     indicate_audio_in_lid=True,
     label_all_input_ids=False,
     base_audio_path=None,
+    max_suffix_len=None,
 ):
   if manifest_files is not None:
     assert dataroot is not None, "dataroot is required for manifest_files"
@@ -198,6 +204,7 @@ def load_speech_text_paired_dataset(
       def add_prefix(example):
         example["path"] = os.path.join(base_audio_path, example["path"])
         return example
+
       raw_dataset = raw_dataset.map(add_prefix)
 
     if partial_sample > 0:
@@ -222,6 +229,7 @@ def load_speech_text_paired_dataset(
           "chatml_prompt_template": chatml_prompt_template,
           "indicate_audio_in_lid": indicate_audio_in_lid,
           "label_all_input_ids": label_all_input_ids,
+          "max_suffix_len": max_suffix_len,
       },
       # remove_columns=raw_dataset.column_names,
       load_from_cache_file=load_from_cache_file,
@@ -399,4 +407,3 @@ class SpeechTextPairedDataCollator:
         "speech_values": speech_inputs.input_features,
         "speech_attention_mask": speech_inputs.attention_mask,
     }
-

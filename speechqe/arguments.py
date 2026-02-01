@@ -223,6 +223,13 @@ class DataTrainingArguments:
               "read speech data from the file path."
       },
   )
+  max_suffix_len: int = field(
+      default=300,
+      metadata={
+          "help":
+              "Maximum length of suffix (hypothesis) in tokens; longer suffix will be truncated."
+      },
+  )
 
 
 @dataclass
